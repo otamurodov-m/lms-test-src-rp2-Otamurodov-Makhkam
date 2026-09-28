@@ -19,9 +19,9 @@ import org.junit.jupiter.api.TestMethodOrder;
 @TestMethodOrder(OrderAnnotation.class)
 @DisplayName("ケース01 ログイン画面への遷移")
 public class Case01 {
-		
-//	@Autowired
-//	LoginController target;
+
+	//	@Autowired
+	//	LoginController target;
 
 	/** 前処理 */
 	@BeforeAll
@@ -39,8 +39,11 @@ public class Case01 {
 	@Order(1)
 	@DisplayName("テスト01 トップページURLでアクセス")
 	void test01() {
+		//goToメソッドの呼び出し（画面遷移）
 		goTo("http://localhost:8080/lms");
+		//タイトルチェック
 		assertEquals("ログイン | LMS", webDriver.getTitle());
+		//getEvidenceメソッドの呼び出し（エビデンス取得）
 		getEvidence(new Object() {});
 
 	}

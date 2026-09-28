@@ -40,16 +40,21 @@ public class Case02 {
 	void test01() {
 		goTo("http://localhost:8080/lms");
 		assertEquals("ログイン | LMS", webDriver.getTitle());
+		getEvidence(new Object() {});
 	}
 
 	@Test
 	@Order(2)
 	@DisplayName("テスト02 DBに登録されていないユーザーでログイン")
 	void test02() {
+		//存在しないIDとパスワードを入力
 		webDriver.findElement(By.id("loginId")).sendKeys("Test123");
 		webDriver.findElement(By.name("password")).sendKeys("Testtest");
+		//ログインボタンをクリック
 		webDriver.findElement(By.cssSelector("input[type='submit']")).click();
+		//エラーメッセージが表示されているか検証
 		WebElement errorMessage = webDriver.findElement(By.className("error"));
+		//エラー文言が想定通りであること確認
 		assertEquals("* ログインに失敗しました。", errorMessage.getText());
 		getEvidence(new Object() {});
 	}
