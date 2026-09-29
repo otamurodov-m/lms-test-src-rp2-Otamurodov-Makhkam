@@ -67,7 +67,7 @@ public class Case04 {
 	void test03() {
 		//ドロップダウンボタンをクリック
 		webDriver.findElement(By.className("dropdown-toggle")).click();
-		//リンクをクリック処理
+		//「ヘルプ」リンクをクリック処理
 		webDriver.findElement(By.linkText("ヘルプ")).click();
 		assertEquals("http://localhost:8080/lms/help", webDriver.getCurrentUrl());
 		getEvidence(new Object() {

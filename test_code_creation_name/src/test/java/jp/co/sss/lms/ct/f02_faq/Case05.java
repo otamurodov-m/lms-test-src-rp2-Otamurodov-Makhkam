@@ -67,9 +67,9 @@ public class Case05 {
 	@Order(3)
 	@DisplayName("テスト03 上部メニューの「ヘルプ」リンクからヘルプ画面に遷移")
 	void test03() {
-		//ドロップダウンボタンをクリック
+		//ドロップダウン（機能）ボタンをクリック
 		webDriver.findElement(By.className("dropdown-toggle")).click();
-		//リンクをクリック処理
+		//「ヘルプ」リンクをクリック処理
 		webDriver.findElement(By.linkText("ヘルプ")).click();
 		assertEquals("http://localhost:8080/lms/help", webDriver.getCurrentUrl());
 		getEvidence(new Object() {
@@ -103,8 +103,8 @@ public class Case05 {
 		searchInput.clear();
 		searchInput.sendKeys("セルフ");
 		searchInput.sendKeys(Keys.ENTER);
-		String currentUrl = webDriver.getCurrentUrl();
-		assertTrue(currentUrl.contains("セルフ"));
+	    WebElement resultArea = webDriver.findElement(By.className("mb10"));
+	    assertTrue(resultArea.getText().contains("セルフ"));
 		getEvidence(new Object() {
 		});
 	}
@@ -113,7 +113,13 @@ public class Case05 {
 	@Order(6)
 	@DisplayName("テスト06 「クリア」ボタン押下で入力したキーワードを消去")
 	void test06() {
-		// TODO ここに追加
+		WebElement searchInput = webDriver.findElement(By.name("keyword"));
+		webDriver.findElement(By.cssSelector("input[type='button']")).click();
+		String actualValue = searchInput.getAttribute("value");
+		assertEquals("", actualValue);
+		getEvidence(new Object() {
+		});
+		
 	}
 
 }
