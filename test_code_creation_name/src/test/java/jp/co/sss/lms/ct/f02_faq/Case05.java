@@ -101,9 +101,13 @@ public class Case05 {
 	void test05() {
 		WebElement searchInput = webDriver.findElement(By.name("keyword"));
 		searchInput.clear();
+		//キーワード（セルフ）を入力
 		searchInput.sendKeys("セルフ");
+		//Enterを押下
 		searchInput.sendKeys(Keys.ENTER);
+		//検索結果を取得
 	    WebElement resultArea = webDriver.findElement(By.className("mb10"));
+	    //検索結果に「セルフ」が含まれているかチェック
 	    assertTrue(resultArea.getText().contains("セルフ"));
 		getEvidence(new Object() {
 		});
@@ -114,7 +118,9 @@ public class Case05 {
 	@DisplayName("テスト06 「クリア」ボタン押下で入力したキーワードを消去")
 	void test06() {
 		WebElement searchInput = webDriver.findElement(By.name("keyword"));
+		//「クリア」ボタンをクリック
 		webDriver.findElement(By.cssSelector("input[type='button']")).click();
+		//検索エリアのvalueをゲット
 		String actualValue = searchInput.getAttribute("value");
 		assertEquals("", actualValue);
 		getEvidence(new Object() {
