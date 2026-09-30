@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 /**
@@ -103,8 +102,8 @@ public class Case05 {
 		searchInput.clear();
 		//キーワード（セルフ）を入力
 		searchInput.sendKeys("セルフ");
-		//Enterを押下
-		searchInput.sendKeys(Keys.ENTER);
+		//「検索」ボタンをクリック
+		webDriver.findElement(By.cssSelector("input[type='submit']")).click();
 		//検索結果を取得
 	    WebElement resultArea = webDriver.findElement(By.className("mb10"));
 	    //検索結果に「セルフ」が含まれているかチェック
